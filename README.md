@@ -8,11 +8,11 @@ Installation de Flask et psycopg2 pour PostgreSQL.
 
   Flask: (Dans le terminal VsCode)
     
-    1- pip install flask
+     pip install flask
   
   Psycopg2: (Dans le terminal VsCode)
     
-    1- pip install psycopg2
+     pip install psycopg2
 
 Sur la page internet entrée les données le nombre de topN voulu dans la base de données
 et ensuite réception du résultat sur la même page.
