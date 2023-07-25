@@ -1,4 +1,5 @@
 import psycopg2
+import json
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -12,6 +13,12 @@ connection = psycopg2.connect(  host= '34.95.61.235',
                                 port = 5432)
 
 cursor = connection.cursor()
+
+query="SELECT score FROM score;"
+
+cursor.execute()
+
+results = cursor.fetchall()
 
 #Ensuite faire des Select, pour les tables voulues.
 
@@ -28,6 +35,26 @@ def number_input():
         except ValueError:
             return "Erreur : Veuillez saisir un nombre valide."        
     return render_template('number_input.html')
+
+# Convertir les résultats en format JSON
+# Exemple de données pris d'une base de données.
+data = []
+for row in results:
+    user_data = {
+        'score': row[0]
+    }
+    data.append(user_data)
+
+# Formater les données en JSON
+json_data = json.dumps(data, indent=2)
+
+# Écrire le JSON dans un fichier
+with open('utilisateurs.json', 'w') as file:
+    file.write(json_data)
+
+# Afficher le JSON dans la console
+print(json_data)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
